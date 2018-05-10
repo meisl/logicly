@@ -246,7 +246,8 @@ D[3:2] \  00   01   11   10
      10 |    |    |    |    |
         +----+----+----+----+
 ```
-These are non-neighbouring rows, but they do have one thing in common: their respective label bits are equal.
+These are non-neighbouring rows, but they do have one thing in common.
+Their respective label bits are equal in each case, 00 and 11.
 There's a gate for this: XNOR.
 So for Q2 we use the groups
 ```
