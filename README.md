@@ -226,7 +226,7 @@ D[3:2] \  00   01   11   10
         +----+----+----+----+
 ```
 You should already see that the above two groups also appear here, only that it's now 0s instead of 1s.
-But it's easy to invert the end result: simply use a NOR instead of an OR to combine the group expression.
+But it's easy to invert the end result: simply use a NOR instead of an OR to combine the group expressions.
 The remaining group we need for Q2 is the first row, aka `00XX`.
 We could use `/D3 /D2` for this, but `D3 NOR D2` is just the same, by deMorgan: `/D3 /D2 = /(D3 + D2)`.
 It has the advantage that we still do not need to invert any of the input bits, thus keeping the gate
