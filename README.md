@@ -372,6 +372,6 @@ Next up is how to combine these into a complete BCD-to-binary converter, togethe
 In the meantime: try for yourself.
 - start with only 1 BCD digit (4 bits in, 4 bits out)
 - then 2 BCD digits (8 bits in, 7 bits out)
-- then up to a BCD input of up to 255 (10 bits in, 8 bits out)
+- then up to a BCD input of 255 (10 bits in, 8 bits out)
 - ...
 
