@@ -156,6 +156,7 @@ Take Q3: it's got two 1s. We'll address the entries by first stating D3 and D2, 
 This just means that Q3 should be 1 if
  - D3=1 AND D2=1 AND D1=0 AND D0=0
  - OR (D3=1 AND D2=0 AND D1=1 AND D0=1)
+ 
  or, like arithmetic where AND is implicit (like multiplication), OR is "+" (like addition)
  and NOT is "/" (like unary minus, or negation):
 ```
