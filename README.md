@@ -332,9 +332,9 @@ Now that's two pairs of identical columns: 01 and 11 on the one hand, plus 10 an
 (remember: column 00 and 10 differ only in D1, so they're neighbours just like 01 and 11 are).
 We can omit this kind of repetition, and make a Karnough map of just 3 variables, not 4 (leaving out D1):
 ```
-    Q0                      Q0
-      \ D0                    \ D0
-D[3:2] \   0    1       D[3:2] \   0    1
+    Q0                       Q0
+      \ D0                     \ D0
+D[3:2] \   0    1        D[3:2] \   0    1
         +----+----+              +----+----+
      00 |  0 |  1 |           00 |  0 |  1 |
         +----+----+              +----+----+
@@ -361,7 +361,8 @@ So there is a 1 exactly where D3 and D0 are unequal - that's XOR!
 ```
   Q0 = D3 XOR D0
 ```
-That completes our basic building block. Here it is, together two logicly "Digits" for easy testing:
+That completes our basic building block. Here it is, together with two logicly "Digits" for easy testing:
+
 ![BCD-to-bin_06.png](BCD-to-bin_06.png)
 
 ---
