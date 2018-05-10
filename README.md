@@ -89,7 +89,7 @@ D (dec) | D[3:0] | Q (dec) | Q[3:0]
 
 #### A better kind of truth table ####
 
-Now, if we stare at the above table long enough we might eventually "see" a good way of combining the input bits with AND, OR and the like s.t. they produce the output bits we want.
+Now, if we were to stare at the above table just long enough we might eventually "see" a good way of combining the input bits with AND, OR and the like s.t. they produce the output bits we want.
 
 However, there is a better way. Let's rewrite the table in this form:
 ```
@@ -145,4 +145,23 @@ These are the [Karnough maps](https://en.wikipedia.org/wiki/Karnaugh_map)
 for our little BCD-to-binary building block.
 
 
+#### (Blindly) translating a Karnough map to logic ####
 
+Before we go on using the Karnough maps for optimization - which is actually what they're really for -
+let's get out logicly and practice a little.
+
+Take Q3: it's got three 1s. We'll address the entries by first stating D3 and D2, then D1 and D0; like so:
+`11 00`, `10 11`, `10 10`.
+This just means that Q3 should be 1 if
+ - D3=1 AND D2=1 AND D1=0 AND D0=0
+ - OR (D3=1 AND D2=0 AND D1=1 AND D0=1)
+ - OR (D3=1 AND D2=0 AND D1=1 AND D0=0)
+ or, like arithmetic where AND is implicit (like multiplication), OR is "+" (like addition)
+ and NOT is "/" (like unary minus, or negation):
+ ```
+  Q3 = D3 D2 /D1 /D0 + D3 /D2 D1 D0 + D3 /D2 D1 /D0
+ ```
+ With gates:
+ 
+ (BCD-to-bin_01.png)
+ 
