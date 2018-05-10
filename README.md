@@ -145,9 +145,11 @@ These are the [Karnough maps](https://en.wikipedia.org/wiki/Karnaugh_map)
 for our little BCD-to-binary building block.
 
 
-#### (Blindly) translating a Karnough map to logic ####
+#### Translating a Karnough map to logic ####
 
 Let's get out logicly and turn the Karnough maps into gates.
+
+##### AND, OR and NOT #####
 
 Take Q3: it's got two 1s. We'll address the entries by first stating D3 and D2, then D1 and D0; like so:
 `11 00`, `10 11`.
@@ -179,7 +181,8 @@ This works just the same vertically, for example `1X11` for `1011` together with
   Q3 = D3 D2 /D1 + D3 D1 D0
 ```
 ![BCD-to-bin_02.png](BCD-to-bin_02.png)
-Not only are the AND gates smaller, we don't need to invert D2 and D0 anymore.
+
+Not only are the AND gates smaller now, we don't need to invert D2 and D0 anymore.
 But that's only the beginning.
 Consider the address `11XX`: it points to the entire row 11 which we can as well set to all 1s.
 This eliminates the remaining NOT:
