@@ -138,7 +138,7 @@ D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10
         +----+----+----+----+              +----+----+----+----+
      11 |  0 |  - |  - |  - |           11 |  1 |  - |  - |  - |
         +----+----+----+----+              +----+----+----+----+
-     10 |  1 |  1 |  0 |  1 |           10 |  0 |  0 |  1 |  1 |
+     10 |  1 |  1 |  0 |  1 |           10 |  0 |  0 |  1 |  0 |
         +----+----+----+----+              +----+----+----+----+
 ```
 These are the [Karnough maps](https://en.wikipedia.org/wiki/Karnaugh_map)
@@ -147,21 +147,44 @@ for our little BCD-to-binary building block.
 
 #### (Blindly) translating a Karnough map to logic ####
 
-Before we go on using the Karnough maps for optimization - which is actually what they're really for -
-let's get out logicly and practice a little.
+Let's get out logicly and turn the Karnough maps into gates.
 
-Take Q3: it's got three 1s. We'll address the entries by first stating D3 and D2, then D1 and D0; like so:
-`11 00`, `10 11`, `10 10`.
+Take Q3: it's got two 1s. We'll address the entries by first stating D3 and D2, then D1 and D0; like so:
+`11 00`, `10 11`.
 This just means that Q3 should be 1 if
  - D3=1 AND D2=1 AND D1=0 AND D0=0
  - OR (D3=1 AND D2=0 AND D1=1 AND D0=1)
- - OR (D3=1 AND D2=0 AND D1=1 AND D0=0)
  or, like arithmetic where AND is implicit (like multiplication), OR is "+" (like addition)
  and NOT is "/" (like unary minus, or negation):
- ```
-  Q3 = D3 D2 /D1 /D0 + D3 /D2 D1 D0 + D3 /D2 D1 /D0
- ```
- With gates:
- 
- (BCD-to-bin_01.png)
- 
+```
+  Q3 = D3 D2 /D1 /D0 + D3 /D2 D1 D0
+```
+![BCD-to-bin_01.png](BCD-to-bin_01.png)
+
+This is of course not optimal (in terms of the number of gates/gate input lines).
+Note for example that the two columns on the left, 00 and 01 can be considered as identical,
+because the Don't-cares - well, we don't care about.
+
+The label bit that differs is D0, it appears as /D0 in the corresponding term.
+But it actually makes no difference whether it is 0 or 1, so we can just leave it out:
+```
+  Q3 = D3 D2 /D1 + D3 /D2 D1 D0
+```
+`D3 D2 /D1` corresponds to an entry address `110X` with an X in the place of D0 where it doesn't matter.
+Such an address with one X in it points to *a group of two neighbouring* entries, in this case
+`1100` and `1101`.
+This works just the same vertically, for example `1X11` for `1011` together with `1111`
+(here it's D2 which doesn't matter). So this simplifies the expression for Q3 to
+```
+  Q3 = D3 D2 /D1 + D3 D1 D0
+```
+![BCD-to-bin_02.png](BCD-to-bin_02.png)
+Not only are the AND gates smaller, we don't need to invert D2 and D0 anymore.
+But that's only the beginning.
+Consider the address `11XX`: it points to the entire row 11 which we can as well set to all 1s.
+This eliminates the remaining NOT:
+```
+  Q3 = D3 D2 + D3 D1 D0
+```
+![BCD-to-bin_03.png](BCD-to-bin_03.png)
+
