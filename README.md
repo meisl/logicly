@@ -127,7 +127,7 @@ D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10
         +----+----+----+----+              +----+----+----+----+
      10 |  1 |  0 |  0 |  1 |           10 |  0 |  1 |  0 |  1 |
         +----+----+----+----+              +----+----+----+----+
-     
+
     Q2                                 Q3
       \ D[1:0]                           \ D[1:0]
 D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10 
@@ -149,7 +149,7 @@ for our little BCD-to-binary building block.
 
 Let's get out logicly and turn the Karnough maps into gates.
 
-##### AND, OR and NOT #####
+##### AND, OR and NOT: Q3 #####
 
 Take Q3: it's got two 1s. We'll address the entries by first stating D3 and D2, then D1 and D0; like so:
 `11 00`, `10 11`.
@@ -208,7 +208,7 @@ D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10
               D3 & D2                           D3 & D1 & D0
 ```
 
-##### Adding NOR and XNOR to the game #####
+##### Adding NOR and XNOR to the game: Q2 #####
 Now let's go for Q2, here's the Karnough map again:
 ```
     Q2
@@ -248,7 +248,7 @@ D[3:2] \  00   01   11   10
 ```
 These are non-neighbouring rows, but they do have one thing in common: their respective label bits are equal.
 There's a gate for this: XNOR.
-So for Q2 we will use the groups
+So for Q2 we use the groups
 ```
 00XX + 11XX                          1X11
       \ D[1:0]                           \ D[1:0]
@@ -269,3 +269,106 @@ D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10
   Q2 = (D3 XNOR D2) NOR (D3 D1 D0)
 ```
 ![BCD-to-bin_04.png](BCD-to-bin_04.png)
+
+
+##### Nothing really new: Q1 #####
+For Q1,
+```
+    Q1
+      \ D[1:0]
+D[3:2] \  00   01   11   10
+        +----+----+----+----+
+     00 |  0 |  0 |  1 |  1 |
+        +----+----+----+----+
+     01 |  0 |  - |  - |  - |
+        +----+----+----+----+
+     11 |  0 |  - |  - |  - |
+        +----+----+----+----+
+     10 |  0 |  1 |  0 |  1 |
+        +----+----+----+----+
+```
+...we group 0s together like so:
+```
+  XX00                               0X0X                               1X11
+      \ D[1:0]                           \ D[1:0]                           \ D[1:0]
+D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10
+        +----+----+----+----+              +----+----+----+----+              +----+----+----+----+
+     00 | ## |    |    |    |           00 | ##   ## |    |    |           00 |    |    |    |    |
+        +    +----+----+----+              +         +----+----+              +----+----+----+----+
+     01 | ## |    |    |    |           01 | ##   ## |    |    |           01 |    |    |    |    |
+        +    +----+----+----+              +----+----+----+----+              +----+----+----+----+
+     11 | ## |    |    |    |           11 |    |    |    |    |           11 |    |    | ## |    |
+        +    +----+----+----+              +----+----+----+----+              +----+----+    +----+
+     10 | ## |    |    |    |           10 |    |    |    |    |           10 |    |    | ## |    |
+        +----+----+----+----+              +----+----+----+----+              +----+----+----+----+
+             D1 NOR D0                           D3 NOR D1                         D3 & D1 & D0
+```
+...and combine them with NOR:
+```
+  Q1 = NOR( (D3 NOR D1), (D1 NOR D0), (D3 D1 D0) )
+```
+![BCD-to-bin_05.png](BCD-to-bin_05.png)
+
+
+##### XOR is a nice gate, too: Q0 #####
+Finally, the Karnough map for Q0 contains some interesting patterns.
+First, we can make it left-right symmetric by filling in suitable values for the Don't-cares at `0110` and `1110`.
+```
+    Q0                                 Q0
+      \ D[1:0]                           \ D[1:0]
+D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10 
+        +----+----++---+----+              +----+----++---+----+
+     00 |  0 |  1 || 1 |  0 |           00 |  0 |  1 || 1 |  0 |
+        +----+----++---+----+              +----+----++---+----+
+     01 |  0 |  - || - |  - |           01 |  0 |  - || - |  0 |
+        +----+----++---+----+   ~>         +----+----++---+----+
+     11 |  1 |  - || - |  - |           11 |  1 |  - || - |  1 |
+        +----+----++---+----+              +----+----++---+----+
+     10 |  1 |  0 || 0 |  1 |           10 |  1 |  0 || 0 |  1 |
+        +----+----++---+----+              +----+----++---+----+
+```
+Now that's two pairs of identical columns: 01 and 11 on the one hand, plus 10 and 00 on the other
+(remember: column 00 and 10 differ only in D1, so they're neighbours just like 01 and 11 are).
+We can omit this kind of repetition, and make a Karnough map of just 3 variables, not 4 (leaving out D1):
+```
+    Q0                      Q0
+      \ D0                    \ D[1:0]
+D[3:2] \   0    1       D[3:2] \   0    1
+        +----+----+              +----+----+
+     00 |  0 |  1 |           00 |  0 |  1 |
+        +----+----+              +----+----+
+     01 |  0 |  - |           01 |  0 |  1 |
+        +----+----+   ~>         +----+----+
+     11 |  1 |  - |           11 |  1 |  0 |
+        +----+----+              +----+----+
+     10 |  1 |  0 |           10 |  1 |  0 |
+        +----+----+              +----+----+
+```
+On the right-hand side I've already filled in the remaining Don't cares such that we get pairs of identical rows,
+which leaves us with a Karnough map of only 2 variables, namely D3 and D0:
+```
+    Q0
+      \ D0
+    D3 \   0    1
+        +----+----+
+      0 |  0 |  1 |
+        +----+----+
+      1 |  1 |  0 |
+        +----+----+
+```
+So there is a 1 exactly where D3 and D0 are unequal - that's XOR!
+```
+  Q0 = D3 XOR D0
+```
+That completes our basic building block. Here it is, together two logicly "Digits" for easy testing:
+![BCD-to-bin_06.png](BCD-to-bin_06.png)
+
+---
+Next up is how to combine these into a complete BCD-to-binary converter, together with a performance analysis.
+
+In the meantime: try for yourself.
+- start with only 1 BCD digit (4 bits in, 4 bits out)
+- then 2 BCD digits (8 bits in, 7 bits out)
+- then up to a BCD input of up to 255 (10 bits in, 8 bits out)
+- ...
+
