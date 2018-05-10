@@ -332,7 +332,7 @@ Now that's two pairs of identical columns: 01 and 11 on the one hand, plus 10 an
 We can omit this kind of repetition, and make a Karnough map of just 3 variables, not 4 (leaving out D1):
 ```
     Q0                      Q0
-      \ D0                    \ D[1:0]
+      \ D0                    \ D0
 D[3:2] \   0    1       D[3:2] \   0    1
         +----+----+              +----+----+
      00 |  0 |  1 |           00 |  0 |  1 |
