@@ -319,14 +319,14 @@ First, we can make it left-right symmetric by filling in suitable values for the
     Q0                                 Q0
       \ D[1:0]                           \ D[1:0]
 D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10 
-        +----+----++---+----+              +----+----++---+----+
-     00 |  0 |  1 || 1 |  0 |           00 |  0 |  1 || 1 |  0 |
-        +----+----++---+----+              +----+----++---+----+
-     01 |  0 |  - || - |  - |           01 |  0 |  - || - |  0 |
-        +----+----++---+----+   ~>         +----+----++---+----+
-     11 |  1 |  - || - |  - |           11 |  1 |  - || - |  1 |
-        +----+----++---+----+              +----+----++---+----+
-     10 |  1 |  0 || 0 |  1 |           10 |  1 |  0 || 0 |  1 |
+        +----+----+----+----+              +----+----++---+----+
+     00 |  0 |  1 |  1 |  0 |           00 |  0 |  1 || 1 |  0 |
+        +----+----+----+----+              +----+----++---+----+
+     01 |  0 |  - |  - |  - |           01 |  0 |  - || - |  0 |
+        +----+----+----+----+   ~>         +----+----++---+----+
+     11 |  1 |  - |  - |  - |           11 |  1 |  - || - |  1 |
+        +----+----+----+----+              +----+----++---+----+
+     10 |  1 |  0 |  0 |  1 |           10 |  1 |  0 || 0 |  1 |
         +----+----++---+----+              +----+----++---+----+
 ```
 Now that's two pairs of identical columns: 01 and 11 on the one hand, plus 10 and 00 on the other
@@ -346,7 +346,7 @@ D[3:2] \   0    1        D[3:2] \   0    1
      10 |  1 |  0 |           10 |  1 |  0 |
         +----+----+              +----+----+
 ```
-On the right-hand side I've already filled in the remaining Don't cares such that we get pairs of identical rows,
+On the right-hand side I've already filled in the remaining Don't cares such that we get pairs of identical *rows* (00/01 and 11/10),
 which leaves us with a Karnough map of only 2 variables, namely D3 and D0:
 ```
     Q0
