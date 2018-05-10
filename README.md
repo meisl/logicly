@@ -63,7 +63,7 @@ Shifting in a 0 from the left gives 0..4, or 0000..0100.
 Shifting in a 1 from the left gives 8..12, or 1000..1100.
 So the outputs for input values 5, 6, 7, and 13, 14, 15 actually don't matter.
 
-In the following table, the so-called **Don't-Care** bits appear as X.
+The following table shows the so-called **Don't-Care**s as dashes "-".
 
 #### Truth table 2 ###
 ```
@@ -74,16 +74,75 @@ D (dec) | D[3:0] | Q (dec) | Q[3:0]
      2  |  0010  |      2  |  0010
      3  |  0011  |      3  |  0011
      4  |  0100  |      4  |  0100
-     5  |  0101  |      -  |  XXXX
-     6  |  0110  |      -  |  XXXX
-     7  |  0111  |      -  |  XXXX
+     5  |  0101  |      -  |  ----
+     6  |  0110  |      -  |  ----
+     7  |  0111  |      -  |  ----
      8  |  1000  |      5  |  0101
      9  |  1001  |      6  |  0110
     10  |  1010  |      7  |  0111
     11  |  1011  |      8  |  1000
     12  |  1100  |      9  |  1001
-    13  |  1101  |      -  |  XXXX
-    14  |  1110  |      -  |  XXXX
-    15  |  1111  |      -  |  XXXX
+    13  |  1101  |      -  |  ----
+    14  |  1110  |      -  |  ----
+    15  |  1111  |      -  |  ----
 ```
+
+#### A better kind of truth table ####
+
+Now, if we stare at the above table long enough we might eventually "see" a good way of combining the input bits with AND, OR and the like s.t. they produce the output bits we want.
+
+However, there is a better way. Let's rewrite the table in this form:
+```
+Q (decimal)                          Q[3:0] (binary)
+      \ D[1:0]                             \ D[1:0]
+D[3:2] \  00   01   11   10          D[3:2] \  00   01   11   10 
+        +----+----+----+----+                +----+----+----+----+
+     00 |  0 |  1 |  3 |  2 |             00 |0000|0001|0011|0010|
+        +----+----+----+----+                +----+----+----+----+
+     01 |  4 | -- | -- | -- |             01 |0100|----|----|----|
+        +----+----+----+----+                +----+----+----+----+
+     11 |  9 | -- | -- | -- |             11 |1001|----|----|----|
+        +----+----+----+----+                +----+----+----+----+
+     10 |  5 |  6 |  8 |  7 |             10 |0101|0110|1000|0111|
+        +----+----+----+----+                +----+----+----+----+
+```
+Rows are labelled with the upper two input bits D3 and D2, columns with the lower two D1 and D0.
+This again gives 16 entries, 6 of which we don't care about.
+
+But **why are they so strangely ordered?** The point here is to have exactly one label bit changed between any two neighbouring rows or columns, respectively. Note that this is also true for the top and bottom row, and for the left and right column.
+So we can consider these as "neighbours" in that sense as well.
+
+Why this is helpful, we'll see in a minute. First let's split it up for each Q bit individually,
+s.t. patterns and commonalities stick out even better:
+```
+    Q0                                 Q1
+      \ D[1:0]                           \ D[1:0]
+D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10 
+        +----+----+----+----+              +----+----+----+----+
+     00 |  0 |  1 |  1 |  0 |           00 |  0 |  0 |  1 |  1 |
+        +----+----+----+----+              +----+----+----+----+
+     01 |  0 |  - |  - |  - |           01 |  0 |  - |  - |  - |
+        +----+----+----+----+              +----+----+----+----+
+     11 |  1 |  - |  - |  - |           11 |  0 |  - |  - |  - |
+        +----+----+----+----+              +----+----+----+----+
+     10 |  1 |  0 |  0 |  1 |           10 |  0 |  1 |  0 |  1 |
+        +----+----+----+----+              +----+----+----+----+
+     
+    Q2                                 Q3
+      \ D[1:0]                           \ D[1:0]
+D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10 
+        +----+----+----+----+              +----+----+----+----+
+     00 |  0 |  0 |  0 |  0 |           00 |  0 |  0 |  0 |  0 |
+        +----+----+----+----+              +----+----+----+----+
+     01 |  1 |  - |  - |  - |           01 |  0 |  - |  - |  - |
+        +----+----+----+----+              +----+----+----+----+
+     11 |  0 |  - |  - |  - |           11 |  1 |  - |  - |  - |
+        +----+----+----+----+              +----+----+----+----+
+     10 |  1 |  1 |  0 |  1 |           10 |  0 |  0 |  1 |  1 |
+        +----+----+----+----+              +----+----+----+----+
+```
+These are the [Karnough maps](https://en.wikipedia.org/wiki/Karnaugh_map)
+for our little BCD-to-binary building block.
+
+
 
