@@ -184,10 +184,88 @@ This works just the same vertically, for example `1X11` for `1011` together with
 
 Not only are the AND gates smaller now, we don't need to invert D2 and D0 anymore.
 But that's only the beginning.
-Consider the address `11XX`: it points to the entire row 11 which we can as well set to all 1s.
+Consider the address `11XX`: it points to the entire row 11 which we might as well set to all 1s.
 This eliminates the remaining NOT:
 ```
   Q3 = D3 D2 + D3 D1 D0
 ```
 ![BCD-to-bin_03.png](BCD-to-bin_03.png)
 
+In conclusion, we have made two groups of entries:
+```
+   11XX                               1X11
+      \ D[1:0]                           \ D[1:0]
+D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10 
+        +----+----+----+----+              +----+----+----+----+
+     00 |    |    |    |    |           00 |    |    |    |    |
+        +----+----+----+----+              +----+----+----+----+
+     01 |    |    |    |    |           01 |    |    |    |    |
+        +----+----+----+----+              +----+----+----+----+
+     11 | ##   ##   ##   ## |           11 |    |    | ## |    |
+        +----+----+----+----+              +----+----+    +----+
+     10 |    |    |    |    |           10 |    |    | ## |    |
+        +----+----+----+----+              +----+----+----+----+
+              D3 & D2                           D3 & D1 & D0
+```
+
+##### Adding NOR and XNOR to the game #####
+Now let's go for Q2, here's the Karnough map again:
+```
+    Q2
+      \ D[1:0]
+D[3:2] \  00   01   11   10
+        +----+----+----+----+
+     00 |  0 |  0 |  0 |  0 |
+        +----+----+----+----+
+     01 |  1 |  - |  - |  - |
+        +----+----+----+----+
+     11 |  0 |  - |  - |  - |
+        +----+----+----+----+
+     10 |  1 |  1 |  0 |  1 |
+        +----+----+----+----+
+```
+You should already see that the above two groups also appear here, only that it's now 0s instead of 1s.
+But it's easy to invert the end result: simply use a NOR instead of an OR to combine the group expression.
+The remaining group we need for Q2 is the first row, aka `00XX`.
+We could use `/D3 /D2` for this, but `D3 NOR D2` is just the same, by deMorgan: `/D3 /D2 = /(D3 + D2)`.
+It has the advantage that we still do not need to invert any of the input bits, thus keeping the gate
+delay down at 2, rather than 3.
+
+But wait, look at this:
+```
+  ????
+      \ D[1:0]
+D[3:2] \  00   01   11   10
+        +----+----+----+----+
+     00 | ##   ##   ##   ## |
+        +----+----+----+----+
+     01 |    |    |    |    |
+        +----+----+----+----+
+     11 | ##   ##   ##   ## |
+        +----+----+----+----+
+     10 |    |    |    |    |
+        +----+----+----+----+
+```
+These are non-neighbouring rows, but they do have one thing in common: their respective label bits are equal.
+There's a gate for this: XNOR.
+So for Q2 we will use the groups
+```
+00XX + 11XX                          1X11
+      \ D[1:0]                           \ D[1:0]
+D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10 
+        +----+----+----+----+              +----+----+----+----+
+     00 | ##   ##   ##   ## |           00 |    |    |    |    |
+        +----+----+----+----+              +----+----+----+----+
+     01 |    |    |    |    |           01 |    |    |    |    |
+        +----+----+----+----+              +----+----+----+----+
+     11 | ##   ##   ##   ## |           11 |    |    | ## |    |
+        +----+----+----+----+              +----+----+    +----+
+     10 |    |    |    |    |           10 |    |    | ## |    |
+        +----+----+----+----+              +----+----+----+----+
+             D3 XNOR D2                         D3 & D1 & D0
+```
+...and combine them with NOR:
+```
+  Q2 = (D3 XNOR D2) NOR (D3 D1 D0)
+```
+![BCD-to-bin_04.png](BCD-to-bin_04.png)
