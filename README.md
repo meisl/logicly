@@ -370,7 +370,8 @@ That completes our basic building block. Here it is, together with two logicly "
 Next up is how to combine these into a complete BCD-to-binary converter, together with a performance analysis.
 
 In the meantime: try for yourself.
-- start with only 1 BCD digit (4 bits in, 4 bits out)
+- the only gate we haven't used is NAND; what does it do to group expressions and what's its effect as combinator of group expressions? Can you find a way of putting it to good use here?
+- convert only 1 BCD digit to binary (4 bits in, 4 bits out)
 - then 2 BCD digits (8 bits in, 7 bits out)
 - then up to a BCD input of 255 (10 bits in, 8 bits out)
 - ...
