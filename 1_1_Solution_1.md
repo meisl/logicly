@@ -91,7 +91,7 @@ D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10         D[3:2] \ 
      10 |    |    |    |    |           10 |    |    | ##   ## |           10 |    |    |    |    |
         +----+----+----+----+              +----+----+----+----+              +----+----+----+----+
 ```
-NOR inverts the result of OR, which corresponds to the *intersection of group inverses*.
+NOR inverts the result of OR; the outer inversion can be pushed "inside": *intersection of group inverses*.
 ```
       \ D[1:0]                           \ D[1:0]                           \ D[1:0]
 D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10         D[3:2] \  00   01   11   10 
@@ -105,7 +105,7 @@ D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10         D[3:2] \ 
      10 |    |    |    |    |           10 |    |    | ##   ## |           10 | ##   ## |    |    |
         +----+----+----+----+              +----+----+----+----+              +----+----+----+----+
 ```
-NAND inverts the result of AND, which corresponds to the *union of group inverses*.
+NAND inverts the result of AND; the outer inversion can be "pushed inside": *union of group inverses*.
 ```
       \ D[1:0]                           \ D[1:0]                           \ D[1:0]
 D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10         D[3:2] \  00   01   11   10 
