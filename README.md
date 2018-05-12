@@ -2,12 +2,13 @@
 
 ### Algorithm ###
 The algorithm works from LSB to MSB of the BCD representation, and produces the binary digits from LSB to MSB, too.
+For `n` bits of BCD:
 
-Start with a binary running result of no bits at all, and for `n` bits of BCD repeat `n` times:
-
-1. add LSB of BCD repr. as MSB to your binary running result
-2. right-shift the whole BCD repr. by one bit (throwing away the LSB)
-3. subtract 3 from every (4-bit) BCD digit if it's (now) >7
+Start with a binary running result of 1 bit: the LSB of the BCD repr.
+Then repeat `n-1` times:
+1. right-shift the whole BCD repr. by one bit (throwing away the LSB)
+2. subtract 3 from every (4-bit) BCD digit if it's (now) >7
+3. add LSB of BCD repr. as MSB to your binary running result
 
 
 **Why subtract 3?**
