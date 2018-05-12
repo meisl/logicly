@@ -378,3 +378,4 @@ In the meantime: try for yourself.
  4. Convert BCD inputs up to 39 (0x27): 6 bits in, 6 bits out.
  5. Convert BCD inputs up to 79 (0x4F): 7 bits in, 7 bits out.
  6. Convert 2 BCD digits (up to 99 / 0x63): 8 bits in, 7 bits out.
+Tasks 2 through 6 are of course meant to be solved with logicly, using the basic building block plus switches, light bulb, digits and labels.
