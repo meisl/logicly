@@ -369,10 +369,11 @@ That completes our basic building block. Here it is, together with two logicly "
 ---
 Next up is how to combine these into a complete BCD-to-binary converter, together with a performance analysis.
 
+### Tasks ###
 In the meantime: try for yourself.
-- the only gate we haven't used is NAND; what does it do to group expressions and what's its effect as combinator of group expressions? Can you find a way of putting it to good use here?
-- convert only 1 BCD digit to binary (4 bits in, 4 bits out)
-- then 2 BCD digits (8 bits in, 7 bits out)
-- then up to a BCD input of 255 (10 bits in, 8 bits out)
-- ...
-
+ 1. The only gate we haven't used is NAND; what does it do to group expressions and what is its effect as combinator of group expressions? Can you find a way of putting it to good use here?
+ 2. Convert only 1 BCD digit to binary: 4 bits in, 4 bits out.
+ 3. Convert BCD inputs up to 19 (0x13): 5 bits in, 5 bits out.
+ 4. Convert BCD inputs up to 39 (0x27): 6 bits in, 6 bits out.
+ 5. Convert BCD inputs up to 79 (0x4F): 7 bits in, 7 bits out.
+ 6. Convert 2 BCD digits (up to 99 / 0x63): 8 bits in, 7 bits out.
