@@ -142,13 +142,13 @@ D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10
      10 |  1 |  1 |  0 |  1 |           10 |  0 |  0 |  1 |  0 |
         +----+----+----+----+              +----+----+----+----+
 ```
-These are the [Karnough maps](https://en.wikipedia.org/wiki/Karnaugh_map)
+These are the [Karnaugh maps](https://en.wikipedia.org/wiki/Karnaugh_map)
 for our little BCD-to-binary building block.
 
 
-#### Translating a Karnough map to logic ####
+#### Translating a Karnaugh map to logic ####
 
-Let's get out logicly and turn the Karnough maps into gates.
+Let's get out logicly and turn the Karnaugh maps into gates.
 
 ##### AND, OR and NOT: Q3 #####
 
@@ -211,7 +211,7 @@ D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10
 ```
 
 ##### Adding NOR and XNOR to the game: Q2 #####
-Now let's go for Q2, here's the Karnough map again:
+Now let's go for Q2, here's the Karnaugh map again:
 ```
     Q2
       \ D[1:0]
@@ -314,7 +314,7 @@ D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10        D[3:2] \  
 
 
 ##### XOR is a nice gate, too: Q0 #####
-Finally, the Karnough map for Q0 contains some interesting patterns.
+Finally, the Karnaugh map for Q0 contains some interesting patterns.
 First, we can make it left-right symmetric by filling in suitable values for the Don't-cares at `0110` and `1110`.
 ```
     Q0                                 Q0
@@ -332,7 +332,7 @@ D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10
 ```
 Now that's two pairs of identical columns: 01 and 11 on the one hand, plus 10 and 00 on the other
 (remember: column 00 and 10 differ only in D1, so they're neighbours just like 01 and 11 are).
-We can omit this kind of repetition, and make a Karnough map of just 3 variables, not 4 (leaving out D1):
+We can omit this kind of repetition, and make a Karnaugh map of just 3 variables, not 4 (leaving out D1):
 ```
     Q0                       Q0
       \ D0                     \ D0
@@ -348,7 +348,7 @@ D[3:2] \   0    1        D[3:2] \   0    1
         +----+----+              +----+----+
 ```
 On the right-hand side I've already filled in the remaining Don't cares such that we get pairs of identical *rows* (00/01 and 11/10),
-which leaves us with a Karnough map of only 2 variables, namely D3 and D0:
+which leaves us with a Karnaugh map of only 2 variables, namely D3 and D0:
 ```
     Q0
       \ D0
