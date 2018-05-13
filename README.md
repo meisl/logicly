@@ -165,28 +165,101 @@ This just means that Q3 should be 1 if
 ```
 ![BCD-to-bin_01.png](BCD-to-bin_01.png)
 
-This is of course not optimal (in terms of the number of gates/gate input lines).
-Note for example that the two columns on the left, 00 and 01 can be considered as identical,
-because the Don't-cares - well, we don't care about.
+That's of course not optimal (in terms of the number of gates/gate input lines).
+We can see this from the Karnaugh map. Remember: we don't care about the output value of "Don't-care" entries.
+Hence we can fill in there whatever we like. For example
+```
+    Q3                                 Q3
+      \ D[1:0]                           \ D[1:0]
+D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10 
+        +----+----+----+----+              +----+----+----+----+
+     00 |  0 |  0 |  0 |  0 |           00 |  0 |  0 |  0 |  0 |
+        +----+----+----+----+              +----+----+----+----+
+     01 |  0 |  - |  - |  - |           01 |  0 |  0 |  - |  - |
+        +----+----+----+----+     ~>       +----+----+----+----+
+     11 |  1 |  - |  - |  - |           11 |  1 |  1 |  - |  - |
+        +----+----+----+----+              +----+----+----+----+
+     10 |  0 |  0 |  1 |  0 |           10 |  0 |  0 |  1 |  0 |
+        +----+----+----+----+              +----+----+----+----+
+```
+Now the two columns on the left - labelled with 00 and 01 - have identical contents.
+The column labels are just the input bits D1 and D0, so now the only difference between those two columns
+is nothing but the label bit D0.
 
-The label bit that differs is D0, it appears as /D0 in the corresponding term.
-But it actually makes no difference whether it is 0 or 1, so we can just leave it out:
+**What does that actually mean?** Consider the first term for `Q3` from above, `D3 D2 /D1 /D0`.
+It contains `/D1`, meaning that D1=0, so we are in one of the two columns on the left.
+It also contains `/D0`, which says it's column 00 - but now it actually doesn't matter anymore if it's column 00 or 01.
+
+Hence, *for this term*, it makes no difference whether D0 is 0 or 1, so we can just leave it out and use `D3 D2 /D1` instead.
+So now we have the shorter
 ```
   Q3 = D3 D2 /D1 + D3 /D2 D1 D0
 ```
 `D3 D2 /D1` corresponds to an entry address `110X` with an X in the place of D0 where it doesn't matter.
 Such an address with one X in it points to *a group of two neighbouring* entries, in this case
-`1100` and `1101`.
-This works just the same vertically, for example `1X11` for `1011` together with `1111`
-(here it's D2 which doesn't matter). So this simplifies the expression for Q3 to
+`1100` and `1101`. We'll depict such groups like so:
+```
+    110X
+      \ D[1:0]
+D[3:2] \  00   01   11   10
+        +----+----+----+----+
+     00 |    |    |    |    |
+        +----+----+----+----+
+     01 |    |    |    |    |
+        +----+----+----+----+
+     11 | ##   ## |    |    |
+        +----+----+----+----+
+     10 |    |    |    |    |
+        +----+----+----+----+
+```
+We write `##` in order to make common patterns stick out even more clearly.
+It'll be helpful to see which intermediate signals (from group expressions) can be reused for other Q outputs.
+
+Now, just the same can be done with *row* labels, for example `1X11` for `1011` together with `1111`
+(here D2 doesn't matter).
+```
+    1X11
+      \ D[1:0]
+D[3:2] \  00   01   11   10
+        +----+----+----+----+
+     00 |    |    |    |    |
+        +----+----+----+----+
+     01 |    |    |    |    |
+        +----+----+----+----+
+     11 |    |    | ## |    |
+        +----+----+    +----+
+     10 |    |    | ## |    |
+        +----+----+----+----+
+```
+This can be used to simplify the second term for `Q3`, `D3 /D2 D1 D0` to `D3 D1 D0` (leaving out `/D2`).
+Altogether:
 ```
   Q3 = D3 D2 /D1 + D3 D1 D0
 ```
 ![BCD-to-bin_02.png](BCD-to-bin_02.png)
 
 Not only are the AND gates smaller now, we don't need to invert D2 and D0 anymore.
-But that's only the beginning.
-Consider the address `11XX`: it points to the entire row 11 which we might as well set to all 1s.
+But there's even more.
+Compare what we've implemented so far vs what's really required:
+```
+ Q3(so far)                        Q3(required)
+      \ D[1:0]                           \ D[1:0]
+D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10 
+        +----+----+----+----+              +----+----+----+----+
+     00 |  0 |  0 |  0 |  0 |           00 |  0 |  0 |  0 |  0 |
+        +----+----+----+----+              +----+----+----+----+
+     01 |  0 |  0 |  0 |  0 |           01 |  0 |  - |  - |  - |
+        +----+----+----+----+     vs       +----+----+----+----+
+     11 |  1 |  1 |  1 | *0 |<-         11 |  1 |  - |  - |  - |
+        +----+----+----+----+              +----+----+----+----+
+     10 |  0 |  0 |  1 |  0 |           10 |  0 |  0 |  1 |  0 |
+        +----+----+----+----+              +----+----+----+----+
+        D3 D2 /D1 + D3 D1 D0                   even smaller?
+```
+Note the entry at `1110`. We've implemented it as a 0 but it's a Don't-care and so may as well be 1.
+Consider the address `11XX`: it points to the entire row 11.
+So let's just set `1110` to 1, making the entire row 11 all 1s.
+
 This eliminates the remaining NOT:
 ```
   Q3 = D3 D2 + D3 D1 D0
@@ -209,6 +282,7 @@ D[3:2] \  00   01   11   10        D[3:2] \  00   01   11   10
         +----+----+----+----+              +----+----+----+----+
               D3 & D2                           D3 & D1 & D0
 ```
+...and combined them with OR.
 
 ##### Adding NOR and XNOR to the game: Q2 #####
 Now let's go for Q2, here's the Karnaugh map again:
