@@ -1,4 +1,4 @@
-#### Karnough groups from NAND ####
+#### Karnaugh groups from NAND ####
 2-input-NAND:
 ```
 0XXX + X0XX                        0XXX + XX0X                        0XXX + XXX0
