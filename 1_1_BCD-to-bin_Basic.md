@@ -453,7 +453,7 @@ Tasks marked with an asterisk (\*) are somewhat harder (-> extra points :), so y
 The ones *without* (\*), however, should definitely be solved before moving on.
 
 ### Tasks ###
-  1. Use the basic building block to make logicly circuits that convert BCD to binary. You'll also need switches and light bulbs (or digits) plus labels if you want - but nothing else.
+  1. Use the basic building block in logicly to make circuits that convert BCD to binary. You'll also need switches and light bulbs (or digits) plus labels if you want - but nothing else.
     - a) Just 1 BCD digit: 4 bits in, 4 bits out.
     - b) BCD inputs up to decimal 19, ie assume the top 3 bits of the BCD digit for "tens" to be all 0. That makes 5 bits of input and 5 bits of output.
     - c) Inputs up to 39: 6 bits in, 6 bits out.
