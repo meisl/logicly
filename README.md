@@ -1,4 +1,6 @@
-## BCD-to-Binary Conversion ##
+# 1 BCD-to-Binary Conversion #
+
+## 1.1 Basic building block ##
 
 ### Algorithm ###
 The algorithm works from LSB to MSB of the BCD representation, and produces the binary digits from LSB to MSB, too.
