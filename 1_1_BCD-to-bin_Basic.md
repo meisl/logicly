@@ -449,7 +449,7 @@ Next up is how to combine these into a complete BCD-to-binary converter, togethe
 In the meantime: try for yourself! Really, below tasks are an integral part of this tutorial.
 It is important that you actually try to solve them before reading on.
 
-Tasks marked with an asterisk (\*) are somewhat harder -> extra points : - but you needn't worry too much if you can't solve them (you're still expected to at least try).
+Tasks marked with an asterisk (\*) are somewhat harder -> extra points :) - but you needn't worry too much if you can't solve them (you're still expected to at least try).
 The ones *without* (\*), however, should definitely be solved before moving on.
 
 ### Tasks ###
