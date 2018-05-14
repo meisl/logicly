@@ -446,13 +446,19 @@ That completes our basic building block. Here it is, together with two logicly "
 ---
 Next up is how to combine these into a complete BCD-to-binary converter, together with a performance analysis.
 
+In the meantime: try for yourself! Really, below tasks are an integral part of this tutorial.
+It is important that you actually try to solve them before reading on.
+
+Tasks marked with an asterisk (\*) are somewhat harder -> extra points :) - but you needn't worry too much if you can't solve them (you're still expected to at least try).
+The ones *without* (\*), however, should definitely be solved before moving on.
+
 ### Tasks ###
-In the meantime: try for yourself.
- 1. The only gate we haven't used is NAND; what does it do to group expressions and what is its effect as combinator of group expressions? Can you find a way of putting it to good use here?
- 2. Convert only 1 BCD digit to binary: 4 bits in, 4 bits out.
- 3. Convert BCD inputs up to 19 (0x13): 5 bits in, 5 bits out.
- 4. Convert BCD inputs up to 39 (0x27): 6 bits in, 6 bits out.
- 5. Convert BCD inputs up to 79 (0x4F): 7 bits in, 7 bits out.
- 6. Convert 2 BCD digits (up to 99 / 0x63): 8 bits in, 7 bits out.
- 
-Tasks 2 through 6 are of course meant to be solved with logicly, using the basic building block plus switches, light bulbs, digits and labels.
+  1. Use the basic building block in logicly to make circuits that convert BCD to binary. You'll also need switches and light bulbs (or digits) plus labels if you want - but nothing else.
+    - a) Just 1 BCD digit: 4 bits in, 4 bits out.
+    - b) BCD inputs up to decimal 19, ie assume the top 3 bits of the BCD digit for "tens" to be all 0. That makes 5 bits of input and 5 bits of output.
+    - c) Inputs up to 39: 6 bits in, 6 bits out.
+    - d) Inputs up to 79: 7 bits in, 7 bits out.
+    - e) Inputs up to 99 (2 complete BCD digits): 8 bits in, 7 bits out.
+    - f) (\*) Go beyond 99. Things are going to look a bit different from here one, probably...
+  2. (\*) Given `n` decimal digits (= `4*n` bits of BCD), what's the nr of binary digits (aka "bits") in terms of `n`?
+  3. (\*) The only gate we haven't used so far is NAND; what does *it* do to group expressions and what is its effect as combinator of group expressions? Can you find a way of putting it to good use in implementing the basic building block?
