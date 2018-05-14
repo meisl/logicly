@@ -459,5 +459,6 @@ The ones *without* (\*), however, should definitely be solved before moving on.
     - c) Inputs up to 39: 6 bits in, 6 bits out.
     - d) Inputs up to 79: 7 bits in, 7 bits out.
     - e) Inputs up to 99 (2 complete BCD digits): 8 bits in, 7 bits out.
-  2. (*) Given `n` decimal digits (= `4*n` bits of BCD), what's the nr of binary digits (aka "bits") in terms of `n`?
-  3. (*) The only gate we haven't used so far is NAND; what does *it* do to group expressions and what is its effect as combinator of group expressions? Can you find a way of putting it to good use in implementing the basic building block?
+    - f) (\*) Go beyond 99. Things are going to look a bit different from here one, probably...
+  2. (\*) Given `n` decimal digits (= `4*n` bits of BCD), what's the nr of binary digits (aka "bits") in terms of `n`?
+  3. (\*) The only gate we haven't used so far is NAND; what does *it* do to group expressions and what is its effect as combinator of group expressions? Can you find a way of putting it to good use in implementing the basic building block?
