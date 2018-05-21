@@ -1,7 +1,7 @@
-**Note:** This contains only the solution to task 1, for the others see main file
+**Note:** This contains only the solution to task 3, for the others see main file
 [`1_1_Solutions`](1_1_Solutions.md).
 
-#### Task 1: Karnaugh groups from NAND ####
+#### Task 3: Karnaugh groups from NAND ####
 2-input-NAND:
 
 	0XXX + X0XX                        0XXX + XX0X                        0XXX + XXX0
