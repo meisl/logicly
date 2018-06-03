@@ -1,8 +1,22 @@
 # 3 Oscillation #
+In this chapter:
+#### 3.1 [Negative feedback: simple oscillator circuits](#3_1) ####
+##### 3.1.1 [Using an AND-gate](#3_1_1) #####
+##### 3.1.2 [OR works just as well](#3_1_2) #####
 
-## 3.1 Negative feedback: simple oscillator circuits ##
+#### 3.2 [Oscilloscope](#3_2) ####
+##### 3.2.1 [The build](#3_2_1) #####
+##### 3.2.2 [The test](#3_2_2) #####
 
-#### Using an AND-gate ####
+#### 3.x [Adjustable frequency oscillator](#3_x) ####
+##### 3.x.y [Frequency divider](#3_x_y) #####
+###### 3.x.y.z [Selecting the divisor](#3_x_y_z) ######
+
+---
+
+## <a name="3_1"></a>3.1 Negative feedback: simple oscillator circuits ##
+
+#### <a name="3_1_1"></a>3.1.1 Using an AND-gate ####
 Consider an AND-gate the output of which is **negated** and then **fed back** into one of the inputs:
 
 ![osci_1_AND_2ticks_0.png](osci_1_AND_2ticks_0.png)
@@ -29,7 +43,7 @@ The period is 6, the half-period is 3.
 Note that the number of gates in the loop equals the length of the half-period.
 
 
-#### Works with OR as well ####
+#### <a name="3_1_2"></a>3.1.2 OR works just as well ####
 ![osci_1_OR_2ticks_0.png](osci_1_OR_4ticks_0.png)
 
 Just the same, except input and outputs are inverted.
@@ -58,13 +72,13 @@ more easily how the signal propagates through the loop
 ...and so on.
 
 
-## 3.2 Oscilloscope ##
+## <a name="3_2"></a>3.2 Oscilloscope ##
 
-### 3.2.1 The build ###
+### <a name="3_2_1"></a>3.2.1 The build ###
 In the period-8 example above we start to see how patterns are shifted
 through a series of buffers, from right to left.
-The most recent signal (out of the NOT) is on the right (`Y3b`),
-earlier ones are further to the left (`Y3c`, `Y3d`).
+The most recent signal (out of the NOT) is on the right (`Y4b`),
+earlier ones are further to the left (`Y4c`, `Y4d`).
 
 We can use this to build something that allows to inspect the development
 of a signal over time in a much more comfortable way than with picture series as above.
@@ -148,7 +162,7 @@ And for the lower one (left to right):
 	|0    |      |       |      |      |5     |      |      |      |    1|0    |      |       |      |     1|5     |      |      |      |    2|0    |      |       |      |    2|5     |      |      |      |    3|0    |      |       |      |    3|5     |      |      |      |     4|0    |      |       |      |    4|5    |      |      |  
 
 
-### 3.2.2 The test ###
+### <a name="3_2_2"></a>3.2.2 The test ###
 Finally, it's time to test the oscilloscope.
 Connect the simple oscillator circuits from the beginning.
 
@@ -160,13 +174,14 @@ The oscillation starts at T=10 and ends at T=45.
 Channels 4 and 5 show oscillators built with OR, which give inverted outputs compared to those built with AND (channels 1, 2, 3).
 
 They all start out in sync, but due to the different periods they don't stay in sync.
-Channels 1 and 2 come back into sync every 12 ticks - the least common multiple of 4 and 6. All three, 1,2 and 3, come back into sync every 24 ticks - the least common multiple of 4, 6 and 8.
+Channels 1 and 2 (or, of course, 4 and 5) come back into sync every 12 ticks - the least common multiple of 4 and 6.
+All three, 1, 2 and 3 come back into sync every 24 ticks - the least common multiple of 4, 6 and 8.
 
-## 3.x Adjustable frequency oscillator ##
+## <a name="3_x"></a>3.x Adjustable frequency oscillator ##
 
-### 3.x.y Frequency divider ###
+### <a name="3_x_y"></a>3.x.y Frequency divider ###
 
-#### Selecting the divisor ####
+#### <a name="3_x_y_z"></a>3.x.y.z Selecting the divisor ####
 	half-period [ticks] (n)
 	       \ base half-period
 	        \   2       3       5       7       9      11      13      15      17
