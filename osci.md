@@ -89,7 +89,7 @@ since otherwise the light bulbs won't overlap correctly.
 to make
 ![osci_2_build_5.png](osci_2_build_5.png)
 
-It is crucial that get the overlap right.
+It is crucial that you get the overlap right.
 Here's how it looks like if you did it wrong:
 
 ![osci_2_build_6.png](osci_2_build_6.png)
@@ -138,16 +138,29 @@ added.
 ![osci_2_build_11.png](osci_2_build_11.png)
 Two rulers have also been added, one measuring from left to right (that would be the time in ticks), and the other from measuring from right to left (for convenience).
 
+It's a bit fiddly to get the ruler marks properly aligned with the light bulbs.
+Here's the label text for the upper one (right to left):
+
+	|      |       |    4|5    |      |      |      |    4|0     |      |      |       |    3|5    |      |      |      |    3|0     |      |       |       |    2|5    |      |      |      |    2|0     |      |      |      |     1|5    |      |       |      |    1|0    |      |      |       |       |5    |      |      |      |      |0 
+
+And for the lower one (left to right):
+
+	|0    |      |       |      |      |5     |      |      |      |    1|0    |      |       |      |     1|5     |      |      |      |    2|0    |      |       |      |    2|5     |      |      |      |    3|0    |      |       |      |    3|5     |      |      |      |     4|0    |      |       |      |    4|5    |      |      |  
+
+
 ### 3.2.2 The test ###
 Finally, it's time to test the oscilloscope.
 Connect the simple oscillator circuits from the beginning.
 
 ![osci_2_build_12.png](osci_2_build_12.png)
 
-Here's a complete trace with `EN` switched on from T=3 to T=44 (channel 0).
-The oscillation starts at T=5 and ends at T=46.
+Here's a complete trace with `EN` switched on from T=8 to T=43 (channel 0).
+The oscillation starts at T=10 and ends at T=45.
 ![osci_2_build_13.png](osci_2_build_13.png)
+Channels 4 and 5 show oscillators built with OR, which give inverted outputs compared to those built with AND (channels 1, 2, 3).
 
+They all start out in sync, but due to the different periods they don't stay in sync.
+Channels 1 and 2 come back into sync every 12 ticks - the least common multiple of 4 and 6. All three, 1,2 and 3, come back into sync every 24 ticks - the least common multiple of 4, 6 and 8.
 
 ## 3.x Adjustable frequency oscillator ##
 
