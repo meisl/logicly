@@ -95,6 +95,10 @@ Connect the buffers and push them together st. the light bulbs overlap like this
 to make
 ![img/?](img/osci_2_build_03.png)
 
+[\[animation\]](img/osci_2_build_02-anim.gif)
+
+![img/?](img/osci_2_build_02-anim.gif)
+
 Repeat with the thing you just build.
 Make sure to **place the copy to the left** of the original,
 since otherwise the light bulbs won't overlap correctly.
@@ -137,6 +141,7 @@ to make
 
 ![img/?](img/osci_2_build_09.png)
 
+
 Now there are way too many connections crossing each other, and below components.
 That is, too many for us to see anything useful in them during simulation.
 That's not a problem - we've got the light bulbs compact and nicely ordered for this -
@@ -171,6 +176,8 @@ Connect the simple oscillator circuits from the beginning.
 Here's a complete trace with `EN` switched on from t=8 to t=43 (channel 0).
 The oscillation starts at t=10 and ends at t=45.
 ![img/?](img/osci_2_trace_01.png)
+[\[animation\]](img/osci_2_trace_01-anim.gif)
+
 Channels 4 and 5 show oscillators built with OR, which give inverted outputs compared to those built with AND (channels 1, 2, 3).
 
 They all start out in sync, but due to the different periods they don't stay in sync.
