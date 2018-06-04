@@ -44,7 +44,7 @@ Note that the number of gates in the loop equals the length of the half-period.
 
 
 #### <a name="3_1_2"></a>3.1.2 OR works just as well ####
-![img/?](img/osci_1_OR_4ticks_00.png)
+![img/?](img/osci_1_OR_4ticks-anim.gif)
 
 Just the same, except input and outputs are inverted.
 So when `/EN` is switched off, it starts oscillating.
@@ -170,7 +170,7 @@ Connect the simple oscillator circuits from the beginning.
 
 Here's a complete trace with `EN` switched on from t=8 to t=43 (channel 0).
 The oscillation starts at t=10 and ends at t=45.
-![img/?](img/osci_2_build_13.png)
+![img/?](img/osci_2_trace_01.png)
 Channels 4 and 5 show oscillators built with OR, which give inverted outputs compared to those built with AND (channels 1, 2, 3).
 
 They all start out in sync, but due to the different periods they don't stay in sync.
