@@ -19,55 +19,55 @@ In this chapter:
 #### <a name="3_1_1"></a>3.1.1 Using an AND-gate ####
 Consider an AND-gate the output of which is **negated** and then **fed back** into one of the inputs:
 
-![osci_1_AND_2ticks_0.png](osci_1_AND_2ticks_0.png)
+![img/?](img/osci_1_AND_2ticks_00.png)
 
 If we switch on `EN`, the thing starts oscillating:
 
-![osci_1_AND_2ticks_1.png](osci_1_AND_2ticks_1.png)
-![osci_1_AND_2ticks_2.png](osci_1_AND_2ticks_2.png)
-![osci_1_AND_2ticks_3.png](osci_1_AND_2ticks_3.png)
-![osci_1_AND_2ticks_4.png](osci_1_AND_2ticks_4.png) ...and starts over.
+![img/?](img/osci_1_AND_2ticks_01.png)
+![img/?](img/osci_1_AND_2ticks_02.png)
+![img/?](img/osci_1_AND_2ticks_03.png)
+![img/?](img/osci_1_AND_2ticks_04.png) ...and starts over.
 
 So this has a **period** of 4 ticks, or a **half-period** of 2.
 
 We can make the period longer by inserting a buffer:
 
-![osci_1_AND_3ticks_1.png](osci_1_AND_3ticks_1.png)
-![osci_1_AND_3ticks_2.png](osci_1_AND_3ticks_2.png)
-![osci_1_AND_3ticks_3.png](osci_1_AND_3ticks_3.png)
-![osci_1_AND_3ticks_4.png](osci_1_AND_3ticks_4.png)
-![osci_1_AND_3ticks_5.png](osci_1_AND_3ticks_5.png)
-![osci_1_AND_3ticks_6.png](osci_1_AND_3ticks_6.png) ...and repeats.
+![img/?](img/osci_1_AND_3ticks_01.png)
+![img/?](img/osci_1_AND_3ticks_02.png)
+![img/?](img/osci_1_AND_3ticks_03.png)
+![img/?](img/osci_1_AND_3ticks_04.png)
+![img/?](img/osci_1_AND_3ticks_05.png)
+![img/?](img/osci_1_AND_3ticks_06.png) ...and repeats.
 
 The period is 6, the half-period is 3.
 Note that the number of gates in the loop equals the length of the half-period.
 
 
 #### <a name="3_1_2"></a>3.1.2 OR works just as well ####
-![osci_1_OR_2ticks_0.png](osci_1_OR_4ticks_0.png)
+![img/?](img/osci_1_OR_4ticks_00.png)
 
 Just the same, except input and outputs are inverted.
 So when `/EN` is switched off, it starts oscillating.
 The pictures are shown below each other so we can see
 more easily how the signal propagates through the loop
 
-![osci_1_OR_2ticks_1.png](osci_1_OR_4ticks_1.png) 1
+![img/?](img/osci_1_OR_4ticks_01.png) 1
 
-![osci_1_OR_2ticks_2.png](osci_1_OR_4ticks_2.png) 2
+![img/?](img/osci_1_OR_4ticks_02.png) 2
 
-![osci_1_OR_2ticks_3.png](osci_1_OR_4ticks_3.png) 3
+![img/?](img/osci_1_OR_4ticks_03.png) 3
 
-![osci_1_OR_2ticks_4.png](osci_1_OR_4ticks_4.png) 4
+![img/?](img/osci_1_OR_4ticks_04.png) 4
 
-![osci_1_OR_2ticks_5.png](osci_1_OR_4ticks_5.png) 5
+![img/?](img/osci_1_OR_4ticks_05.png) 5
 
-![osci_1_OR_2ticks_6.png](osci_1_OR_4ticks_6.png) 6
+![img/?](img/osci_1_OR_4ticks_06.png) 6
 
-![osci_1_OR_2ticks_7.png](osci_1_OR_4ticks_7.png) 7
+![img/?](img/osci_1_OR_4ticks_07.png) 7
 
-![osci_1_OR_2ticks_8.png](osci_1_OR_4ticks_8.png) 8
+![img/?](img/osci_1_OR_4ticks_08.png) 8
 
-![osci_1_OR_2ticks_1.png](osci_1_OR_4ticks_1.png) 1 (again)
+![img/?](img/osci_1_OR_4ticks_01.png) 1 (again)
 
 ...and so on.
 
@@ -86,27 +86,27 @@ Let's build an **oscilloscope**!
 
 Start with a light bulb connected to a buffer:
 
-![osci_2_build_1.png](osci_2_build_1.png)
+![img/?](img/osci_2_build_01.png)
 
 Copy it and place **the new one to the left of the old**.
 Connect the buffers and push them together st. the light bulbs overlap like this:
 
-![osci_2_build_2.png](osci_2_build_2.png)
+![img/?](img/osci_2_build_02.png)
 to make
-![osci_2_build_3.png](osci_2_build_3.png)
+![img/?](img/osci_2_build_03.png)
 
 Repeat with the thing you just build.
 Make sure to **place the copy to the left** of the original,
 since otherwise the light bulbs won't overlap correctly.
 
-![osci_2_build_4.png](osci_2_build_4.png)
+![img/?](img/osci_2_build_04.png)
 to make
-![osci_2_build_5.png](osci_2_build_5.png)
+![img/?](img/osci_2_build_05.png)
 
 It is crucial that you get the overlap right.
 Here's how it looks like if you did it wrong:
 
-![osci_2_build_6.png](osci_2_build_6.png)
+![img/?](img/osci_2_build_06.png)
 
 We repeat this until we have a suitably long chain.
 The length determines how far "back in time" we will be able to see.
@@ -116,7 +116,7 @@ Go up to 16, and keep a copy of this before doubling again.
 Once you have the 32 you place that **to the left of the old 16**.
 Finally it should look like this:
 
-![osci_2_build_7.png](osci_2_build_7.png)
+![img/?](img/osci_2_build_07.png)
 
 Now it's time to add a second channel to our oscilloscope,
 allowing us to see two different signal in relation to each other.
@@ -131,11 +131,11 @@ To achieve this: in the orignal (the bottom one), pull down the line of buffers 
 the buffers of the copy (the top one) we just made.
 Finally drag the copy down over the original like so:
 
-![osci_2_build_8.png](osci_2_build_8.png)
+![img/?](img/osci_2_build_08.png)
 
 to make
 
-![osci_2_build_9.png](osci_2_build_9.png)
+![img/?](img/osci_2_build_09.png)
 
 Now there are way too many connections crossing each other, and below components.
 That is, too many for us to see anything useful in them during simulation.
@@ -145,11 +145,11 @@ some space.
 
 Drag down the upper chain, rather than the lower one up, as even more channels are to be
 added.
-![osci_2_build_10.png](osci_2_build_10.png)
+![img/?](img/osci_2_build_10.png)
 
 6 channels are sufficient. As a last step, the buffers of the right-most column have been dragged out and rotated (individually), in order to make connecting to them easier.
 
-![osci_2_build_11.png](osci_2_build_11.png)
+![img/?](img/osci_2_build_11.png)
 Two rulers have also been added, one measuring from left to right (that would be the time in ticks), and the other from measuring from right to left (for convenience).
 
 It's a bit fiddly to get the ruler marks properly aligned with the light bulbs.
@@ -166,11 +166,11 @@ And for the lower one (left to right):
 Finally, it's time to test the oscilloscope.
 Connect the simple oscillator circuits from the beginning.
 
-![osci_2_build_12.png](osci_2_build_12.png)
+![img/?](img/osci_2_build_12.png)
 
 Here's a complete trace with `EN` switched on from T=8 to T=43 (channel 0).
 The oscillation starts at T=10 and ends at T=45.
-![osci_2_build_13.png](osci_2_build_13.png)
+![img/?](imgx/osci_2_build_13.png)
 Channels 4 and 5 show oscillators built with OR, which give inverted outputs compared to those built with AND (channels 1, 2, 3).
 
 They all start out in sync, but due to the different periods they don't stay in sync.
