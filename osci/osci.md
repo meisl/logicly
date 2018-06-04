@@ -155,11 +155,11 @@ Two rulers have also been added, one measuring from left to right (that would be
 It's a bit fiddly to get the ruler marks properly aligned with the light bulbs.
 Here's the label text for the upper one (right to left):
 
-	|      |       |    4|5    |      |      |      |    4|0     |      |      |       |    3|5    |      |      |      |    3|0     |      |       |       |    2|5    |      |      |      |    2|0     |      |      |      |     1|5    |      |       |      |    1|0    |      |      |       |       |5    |      |      |      |      |0 
+	|      |      |     4|5    |      |       |      |    4|0    |      |      |      |     3|5    |       |      |      |    3|0    |      |      |       |    2|5    |      |       |      |    2|0    |      |      |      |     1|5    |      |       |      |    1|0    |       |      |       |      |5    |       |      |      |      |0 
 
 And for the lower one (left to right):
 
-	|0    |      |       |      |      |5     |      |      |      |    1|0    |      |       |      |     1|5     |      |      |      |    2|0    |      |       |      |    2|5     |      |      |      |    3|0    |      |       |      |    3|5     |      |      |      |     4|0    |      |       |      |    4|5    |      |      |  
+	|0    |      |       |      |      |5     |      |      |      |    1|0    |      |       |      |     1|5    |      |      |      |    2|0    |      |       |      |    2|5     |      |      |      |    3|0    |      |       |      |    3|5     |      |      |      |     4|0    |      |       |      |     4|5    |      |      |  
 
 
 ### <a name="3_2_2"></a>3.2.2 The test ###
