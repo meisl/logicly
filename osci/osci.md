@@ -168,9 +168,9 @@ Connect the simple oscillator circuits from the beginning.
 
 ![img/?](img/osci_2_build_12.png)
 
-Here's a complete trace with `EN` switched on from T=8 to T=43 (channel 0).
-The oscillation starts at T=10 and ends at T=45.
-![img/?](imgx/osci_2_build_13.png)
+Here's a complete trace with `EN` switched on from t=8 to t=43 (channel 0).
+The oscillation starts at t=10 and ends at t=45.
+![img/?](img/osci_2_build_13.png)
 Channels 4 and 5 show oscillators built with OR, which give inverted outputs compared to those built with AND (channels 1, 2, 3).
 
 They all start out in sync, but due to the different periods they don't stay in sync.
